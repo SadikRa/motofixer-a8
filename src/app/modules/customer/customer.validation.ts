@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const customerZodSchema = z.object({
+export const createCustomerZodSchema = z.object({
   body: z.object({
     name: z.string().min(1, "Name is required"),
     email: z.string().email("Invalid email address"),
