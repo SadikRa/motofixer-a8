@@ -3,6 +3,7 @@ import sendResponse from "../../../shared/sendResponse";
 import { customerService } from "./customer.service";
 import status from "http-status";
 
+// create customer
 const createCustomer = catchAsync(async (req, res) => {
   const result = await customerService.createCustomer(req.body);
 
@@ -14,6 +15,19 @@ const createCustomer = catchAsync(async (req, res) => {
   });
 });
 
+//get All Customer
+const getAllCustomer = catchAsync(async (req, res) => {
+  const result = await customerService.getAllCustomer();
+
+  sendResponse(res, {
+    statusCode: status.OK,
+    success: true,
+    message: "customer get successfully!",
+    data: result,
+  });
+});
+
 export const customerController = {
   createCustomer,
+  getAllCustomer,
 };
