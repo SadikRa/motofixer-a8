@@ -1,8 +1,7 @@
 export interface ICustomer {
-    customerId?: string; 
-    name: string;
-    email: string;
-    phone: string;
-    createdAt?: Date;
-  }
-  
+  customerId?: string;
+  name: string;
+  email: string;
+  phone: string;
+  createdAt?: Date;
+}
