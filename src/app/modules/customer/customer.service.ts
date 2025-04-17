@@ -54,9 +54,27 @@ const updateCustomer = async (customerId: string, data: Partial<ICustomer>) => {
   return result;
 };
 
+/// delete customer
+const deleteCustomer = async (customerId: string) => {
+  const result = await prisma.$transaction(async (transactionClient) => {
+    await transactionClient.customer.findUniqueOrThrow({
+      where: { customerId },
+    });
+
+    const deleteCustomer = await transactionClient.customer.delete({
+      where: { customerId },
+    });
+
+    return deleteCustomer;
+  });
+
+  return result;
+};
+
 export const customerService = {
   createCustomer,
   getAllCustomer,
   getACustomer,
   updateCustomer,
+  deleteCustomer,
 };

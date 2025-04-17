@@ -28,4 +28,7 @@ router.put(
   customerController.updateCustomer
 );
 
+//updated Customer
+router.delete("/:customerId", customerController.deleteCustomer);
+
 export const customerRouter = router;
