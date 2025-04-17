@@ -1,7 +1,10 @@
 import express from "express";
 import { customerController } from "./customer.controller";
 import validateRequest from "../../middlewares/validateRequest";
-import { createCustomerZodSchema } from "./customer.validation";
+import {
+  createCustomerZodSchema,
+  updateCustomerZodSchema,
+} from "./customer.validation";
 
 const router = express.Router();
 
@@ -17,5 +20,12 @@ router.get("/", customerController.getAllCustomer);
 
 // get All Customer
 router.get("/:customerId", customerController.getACustomer);
+
+//updated Customer
+router.put(
+  "/:customerId",
+  validateRequest(updateCustomerZodSchema),
+  customerController.updateCustomer
+);
 
 export const customerRouter = router;

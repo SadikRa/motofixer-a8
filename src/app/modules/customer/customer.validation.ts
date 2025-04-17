@@ -10,3 +10,13 @@ export const createCustomerZodSchema = z.object({
       .max(15, "Phone number can't be longer than 15 digits"),
   }),
 });
+
+export const updateCustomerZodSchema = z.object({
+  body: z.object({
+    name: z.string().min(1).optional(),
+    phone: z
+      .string()
+      .min(11, { message: "Phone number must be at least 11 characters long" })
+      .optional(),
+  }),
+});

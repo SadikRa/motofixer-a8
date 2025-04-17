@@ -36,8 +36,27 @@ const getACustomer = async (customerId: string) => {
   return result;
 };
 
+/// update customer
+const updateCustomer = async (customerId: string, data: Partial<ICustomer>) => {
+  const result = await prisma.$transaction(async (transactionClient) => {
+    await transactionClient.customer.findUniqueOrThrow({
+      where: { customerId },
+    });
+
+    const updatedCustomer = await transactionClient.customer.update({
+      where: { customerId },
+      data: data,
+    });
+
+    return updatedCustomer;
+  });
+
+  return result;
+};
+
 export const customerService = {
   createCustomer,
   getAllCustomer,
   getACustomer,
+  updateCustomer,
 };
