@@ -6,7 +6,7 @@ MotoFlexed is a bike servicing management system built with Node.js, Express.js,
 
 ## Live Backend Link
 
-> [MotoFlexed Live Backend Link]()
+> [MotoFlexed Live Backend Link](https://moto-fixer-a8.vercel.app/)
 
 ---
 
@@ -41,7 +41,7 @@ npm install
 Create a `.env` file and add:
 
 ```env
-PORT=5000
+PORT=3000
 DATABASE_URL=your_postgres_database_url
 NODE_ENV=development
 ```
