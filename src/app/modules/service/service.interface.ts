@@ -4,5 +4,6 @@ export interface IServiceRecord {
   serviceDate: string;
   completionDate?: string | null;
   description: string;
-  status?: "pending" | "in_progress" | "completed";
+  status?: "pending" | "in_progress" | "done";
 }
+  

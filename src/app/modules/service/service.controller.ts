@@ -50,7 +50,7 @@ const updateService = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: status.OK,
     success: true,
-    message: "Service updated successfully!",
+    message: "Service marked as completed",
     data: result,
   });
 });

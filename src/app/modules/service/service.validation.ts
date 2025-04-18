@@ -1,10 +1,6 @@
 import { z } from "zod";
 
-export const ServiceStatusEnum = z.enum([
-  "pending",
-  "in_progress",
-  "completed",
-]);
+export const ServiceStatusEnum = z.enum(["pending", "in_progress", "done"]);
 
 export const ServiceRecordValidationSchema = z.object({
   body: z.object({
@@ -27,5 +23,14 @@ export const ServiceRecordValidationSchema = z.object({
       .nullable(),
     description: z.string().min(1, { message: "Description is required" }),
     status: ServiceStatusEnum.optional(),
+  }),
+});
+
+export const UpdateServiceStatusSchema = z.object({
+  body: z.object({
+    completionDate: z
+      .string()
+      .datetime({ message: "Invalid ISO date format" })
+      .optional(),
   }),
 });

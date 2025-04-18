@@ -1,3 +1,4 @@
+import { ServiceStatus } from "../../../../generated/prisma";
 import prisma from "../../../shared/prisma";
 import { IServiceRecord } from "./service.interface";
 
@@ -45,7 +46,7 @@ const getAService = async (serviceId: string) => {
 /// update Service
 const updateService = async (
   serviceId: string,
-  data: Partial<IServiceRecord>
+  data: { completionDate?: string }
 ) => {
   const result = await prisma.$transaction(async (transactionClient) => {
     await transactionClient.serviceRecord.findUniqueOrThrow({
@@ -54,7 +55,10 @@ const updateService = async (
 
     const updatedService = await transactionClient.serviceRecord.update({
       where: { serviceId },
-      data: data,
+      data: {
+        completionDate: data.completionDate ?? new Date().toISOString(),
+        status: ServiceStatus.done,
+      },
     });
 
     return updatedService;
