@@ -28,4 +28,7 @@ router.put(
   serviceController.updateService
 );
 
+// get Overdue Or Pending Services
+router.get("/status", serviceController.getOverdueOrPendingServices);
+
 export const serviceRouter = router;
