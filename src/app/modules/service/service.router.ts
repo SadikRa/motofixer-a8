@@ -1,0 +1,28 @@
+import express from "express";
+import validateRequest from "../../middlewares/validateRequest";
+import { ServiceRecordValidationSchema } from "./service.validation";
+import { serviceController } from "./service.controller";
+
+const router = express.Router();
+
+// create service
+router.post(
+  "/",
+  validateRequest(ServiceRecordValidationSchema),
+  serviceController.createService
+);
+
+// get All service
+router.get("/", serviceController.getAllService);
+
+// get All service
+router.get("/:serviceId", serviceController.getAService);
+
+//updated service
+// router.put(
+//   "/:serviceId",
+//   validateRequest(updateserviceZodSchema),
+//   serviceController.updateCustomer
+// );
+
+export const serviceRouter = router;
