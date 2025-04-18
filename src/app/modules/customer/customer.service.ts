@@ -1,3 +1,4 @@
+import status from "http-status";
 import prisma from "../../../shared/prisma";
 import { ICustomer } from "./customer.interface";
 
@@ -29,10 +30,13 @@ const getAllCustomer = async () => {
 // get A Customer
 const getACustomer = async (customerId: string) => {
   const result = await prisma.customer.findUnique({
-    where: {
-      customerId,
-    },
+    where: { customerId },
   });
+
+  if (!result) {
+    throw new Error("Customer not found");
+  }
+
   return result;
 };
 

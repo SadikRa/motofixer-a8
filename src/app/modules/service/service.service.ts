@@ -40,6 +40,11 @@ const getAService = async (serviceId: string) => {
       serviceId,
     },
   });
+
+  if (!result) {
+    throw new Error("service not found");
+  }
+
   return result;
 };
 

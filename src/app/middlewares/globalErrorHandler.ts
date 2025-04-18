@@ -7,10 +7,13 @@ const globalErrorHandler = (
   res: Response,
   next: NextFunction
 ) => {
-  res.status(status.INTERNAL_SERVER_ERROR).json({
+  const statusCode = err.statusCode || status.INTERNAL_SERVER_ERROR;
+  const message = err.message || "Something went wrong";
+
+  res.status(statusCode).json({
     success: false,
-    massage: err.message || "something went wrong",
-    error: err,
+    status: statusCode,
+    message,
   });
 };
 

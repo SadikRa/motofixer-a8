@@ -40,6 +40,11 @@ const getABike = async (bikeId: string) => {
       bikeId,
     },
   });
+
+  if (!result) {
+    throw new Error("Bike not found");
+  }
+
   return result;
 };
 export const bikeService = {
